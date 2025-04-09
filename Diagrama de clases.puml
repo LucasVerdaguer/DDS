@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Alumno o-- Materia
+Materia -->"*" Materia
+Alumno ..> Inscripcion
+Inscripcion o-- Materia
+
+class Materia{
+ - nombre: String
+ - correlativas List<Materia>
+ + agregarCorrelativa(materia: Materia): Void
+}
+class Alumno{
+ - nombre: String
+ - apellido: String
+ - materiasAprobadas: List<Materia>
+ + agregarMateriasAprobadas(materia: Materia): Void
+}
+class Inscripcion{
+ - alumnoAInscribir: Alumno
+ - materiasAInscribir: List<Materia>
+ - correlativas: Set<Materia>
+ + getCorrelativasNecesarias(materia: Materia): Void
+ + aprobada(alumno: Alumno, materia: Materia): Boolean
+}
+
+
+@enduml
